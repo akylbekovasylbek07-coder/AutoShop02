@@ -1,6 +1,6 @@
 #### наш второй сайть- интернет  магазин с группой 01-25
 
-#### git clone https://github.com/edzen12/AutoShop-2-24.git
+#### git clone https://github.com/Asylbek/AutoShop-1-25.git
 #### открываем в VSCode, открываем терминал
 #### и пишем команду
 #### python -m venv venv
