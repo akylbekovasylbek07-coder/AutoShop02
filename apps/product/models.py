@@ -6,13 +6,13 @@ User = get_user_model()
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, verbose_name="название катерогии")
     slug = models.SlugField(unique=True)
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, related_name='children',
         null=True, blank=True
     )
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True, verbose_name='Активация')
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -22,27 +22,38 @@ class Category(models.Model):
     def _str_(self):
         return self.name
     
+    class Meta:
+        verbose_name_plural = 'Категории'
+        verbose_name = 'Категория'
+
+    
 
 class Brand(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, verbose_name="Название бренды")
     slug = models.SlugField(unique=True)
-    logo = models.ImageField(upload_to='brand/', null=True, blank=True)
+    logo = models.ImageField(upload_to='brand/',verbose_name="Лого бренда", null=True, blank=True)
 
     def _str_(self):
         return self.name
     
+    class Meta:
+        verbose_name_plural = 'Название бренды'
+        verbose_name = 'Лого бренда'
+
+    
 
 class Product(models.Model):
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='products'
+        Category, on_delete=models.CASCADE, 
+        related_name='products'
     )
     brand = models.ForeignKey(
         Brand, on_delete=models.SET_NULL, null=True, blank=True, related_name='products'
     )
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, verbose_name=" Название товара")
     slug = models.SlugField(unique=True)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField( verbose_name="Описание")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     stock = models.PositiveIntegerField(default=0, verbose_name="Количество товара на складе")
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -55,40 +66,65 @@ class Product(models.Model):
     def _str_(self):
         return self.name
     
+    class Meta:
+        verbose_name_plural = 'Описание'
+        verbose_name = 'Описание'
+
+    
 
 class ProductImage(models.Model):
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE , related_name='images'
+        Product, on_delete=models.CASCADE, related_name='images'
     )
-    image = models.ImageField(upload_to='iproduct/')
-    # is_main - models.BooleanField(default=False, verbose_name="Главная картинка")
+    image = models.ImageField(upload_to='product/', verbose_name="Фото")
+    #is_main - models.BooleanField(default=False, verbose_name="Главная картинка")
 
     def _str_(self):
         return self.product.name
     
+    class Meta:
+        verbose_name_plural = 'Фото'
+        verbose_name = 'Фото'
+
+    
 class Attribute(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(verbose_name="Название", max_length=100)
 
     def _str_(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Название'
+        verbose_name = 'Название'
+
     
 class AttributeValue(models.Model):
     attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='values')
     value = models.CharField(max_length=100)
 
     def _str_(self):
-        return self.name
+        return f"{self.attribute.name} {self.value}"
+    
+    class Meta:
+        verbose_name_plural = 'values'
+        verbose_name = 'values'
+
     
 
 class ProductVariant( models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
-    attribute = models.ManyToManyField(AttributeValue)
+    attributes = models.ManyToManyField(AttributeValue)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField(default=1)
+    stock = models.PositiveIntegerField(default=1, verbose_name="НАзвание товара на складе")
     sku = models.CharField(max_length=255, unique=True, verbose_name="Артикул")
 
     def _str_(self):
         return f"{self.product.name} {self.sku}"
+    
+    class Meta:
+        verbose_name_plural = 'Артикул'
+        verbose_name = 'Артикул'
+
     
 
 class Review(models.Model):
@@ -100,3 +136,7 @@ class Review(models.Model):
 
     def _str_(self):
         return f"{self.product.name} {self.rating}"
+    
+    class Meta:
+        verbose_name_plural = 'отзывы'
+        verbose_name = 'отхывы'

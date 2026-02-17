@@ -6,14 +6,11 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Получаем активные основные категории
         context['categories'] = Category.objects.filter(
             is_active=True, parent__isnull=True
         )[:6]
-        
-        # Исправлено: category вместо categoru
         context['product'] = Product.objects.filter(
             is_available=True, 
-            category__is_active=True # Исправленная буква 'y'
+            category__is_active=True 
         )[:8]
         return context

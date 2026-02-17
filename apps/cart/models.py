@@ -13,16 +13,16 @@ class Cart(models.Model):
     )
 created_at  = models.DateField(auto_now_add=True)
  
-def _str_ (self):
+def __str__(self):
     return f"корзина: {self.id}"
 
 class CartItem (models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
-    varant = models.ForeignKey(ProductVariant, on_delete= models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+    variant = models.ForeignKey(ProductVariant, on_delete= models.CASCADE)
+    quantitly = models.PositiveIntegerField(default=1)
 
      
-def _str_ (self):
+def __str__ (self):
     return self.variant.product.name
 
 @property

@@ -19,7 +19,7 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def str(self):
+    def __str__(self):
         return f"Заказ: {self.id}"
 
 
@@ -33,7 +33,7 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField()
 
-    def str(self):
+    def __str__(self):
         return self.variant.product.name 
     
 
@@ -50,7 +50,7 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=150)
     address = models.TextField()
 
-    def str(self):
+    def __str__(self):
         return self.full_name
 
 
@@ -62,6 +62,6 @@ class Payment(models.Model):
     is_paid = models.BooleanField(default=False)
     transaction_id = models.CharField(max_length=255, null=True, blank=True)
 
-    def str(self):
+    def __str__(self):
         return self.method
 
