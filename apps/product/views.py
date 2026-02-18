@@ -23,7 +23,7 @@ class HomeView(TemplateView):
         context['categories'] = Category.objects.filter(
             is_active=True, parent__isnull=True
         )[:6]
-        context['product'] = Product.objects.filter(
+        context['products'] = Product.objects.filter(
             is_available=True, 
             category__is_active=True 
         )[:8]

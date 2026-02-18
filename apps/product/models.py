@@ -24,7 +24,7 @@ class Category(models.Model):
     
     class Meta:
         verbose_name_plural = 'Категории'
-        verbose_name = 'Категория'
+        verbose_name = 'категория'
 
     
 
@@ -37,8 +37,8 @@ class Brand(models.Model):
         return self.name
     
     class Meta:
-        verbose_name_plural = 'Название бренды'
-        verbose_name = 'Лого бренда'
+        verbose_name_plural = 'Бренды'
+        verbose_name = 'бренды'
 
     
 
@@ -48,7 +48,7 @@ class Product(models.Model):
         related_name='products'
     )
     brand = models.ForeignKey(
-        Brand, on_delete=models.SET_NULL, null=True, blank=True, related_name='products'
+        Brand, on_delete=models.SET_NULL, null=True, blank=True, related_name='products', verbose_name='Название'
     )
     name = models.CharField(max_length=150, verbose_name=" Название товара")
     slug = models.SlugField(unique=True)
@@ -67,8 +67,8 @@ class Product(models.Model):
         return self.name
     
     class Meta:
-        verbose_name_plural = 'Описание'
-        verbose_name = 'Описание'
+        verbose_name_plural = 'Продукт'
+        verbose_name = 'продукт'
 
     
 
@@ -84,7 +84,7 @@ class ProductImage(models.Model):
     
     class Meta:
         verbose_name_plural = 'Фото'
-        verbose_name = 'Фото'
+        verbose_name = 'фотки'
 
     
 class Attribute(models.Model):
@@ -94,25 +94,25 @@ class Attribute(models.Model):
         return self.name
     
     class Meta:
-        verbose_name_plural = 'Название'
-        verbose_name = 'Название'
+        verbose_name_plural = 'Атрибут'
+        verbose_name = 'атрибут'
 
     
 class AttributeValue(models.Model):
-    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='values')
+    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='values', verbose_name='Название')
     value = models.CharField(max_length=100)
 
     def _str_(self):
         return f"{self.attribute.name} {self.value}"
     
     class Meta:
-        verbose_name_plural = 'values'
-        verbose_name = 'values'
+        verbose_name_plural = 'Значение атрибута'
+        verbose_name = 'значение атрибута'
 
     
 
 class ProductVariant( models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants', verbose_name='Название')
     attributes = models.ManyToManyField(AttributeValue)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField(default=1, verbose_name="НАзвание товара на складе")
@@ -122,15 +122,15 @@ class ProductVariant( models.Model):
         return f"{self.product.name} {self.sku}"
     
     class Meta:
-        verbose_name_plural = 'Артикул'
-        verbose_name = 'Артикул'
+        verbose_name_plural = 'Вариант продукта'
+        verbose_name = 'вариант продукта'
 
     
 
 class Review(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews', verbose_name='Название')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField()
+    rating = models.PositiveSmallIntegerField(verbose_name='Рейтинг')
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -138,5 +138,5 @@ class Review(models.Model):
         return f"{self.product.name} {self.rating}"
     
     class Meta:
-        verbose_name_plural = 'отзывы'
-        verbose_name = 'отхывы'
+        verbose_name_plural = 'Oтзывы'
+        verbose_name = 'отзывы'
