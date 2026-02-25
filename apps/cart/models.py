@@ -9,22 +9,22 @@ User = get_user_model()
 class Cart(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE,
-        blank=True, null=True
+        blank=True, null=True, verbose_name="РёРјСЏ"
     )
-created_at  = models.DateField(auto_now_add=True)
- 
-def __str__(self):
-    return f"корзина: {self.id}"
+    created_at = models.DateField(auto_now_add=True)
 
-class CartItem (models.Model):
+    def __str__(self):
+        return f"РєРѕСЂР·РёРЅР°: {self.id}"
+
+
+class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
-    variant = models.ForeignKey(ProductVariant, on_delete= models.CASCADE)
+    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     quantitly = models.PositiveIntegerField(default=1)
 
-     
-def __str__ (self):
-    return self.variant.product.name
+    def __str__(self):
+        return self.variant.product.name
 
-@property
-def total_price(self):
-    return self.variant.price * self.quantitly
+    @property
+    def total_price(self):
+        return self.variant.price * self.quantitly

@@ -1,25 +1,29 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
+from mptt.models import MPTTModel, TreeForeignKey
 
 User = get_user_model()
 
 
-class Category(models.Model):
+class Category(MPTTModel):
     name = models.CharField(max_length=150, verbose_name="название катерогии")
     slug = models.SlugField(unique=True)
-    parent = models.ForeignKey(
+    parent = TreeForeignKey(
         'self', on_delete=models.CASCADE, related_name='children',
-        null=True, blank=True
+        null=True, blank=True, verbose_name="Родитель"
     )
     is_active = models.BooleanField(default=True, verbose_name='Активация')
+
+    class MPTTMeta:
+        order_insertion_by = ['name']
 
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
     
     class Meta:
@@ -33,7 +37,7 @@ class Brand(models.Model):
     slug = models.SlugField(unique=True)
     logo = models.ImageField(upload_to='brand/',verbose_name="Лого бренда", null=True, blank=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
     
     class Meta:
@@ -63,7 +67,7 @@ class Product(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
     
     class Meta:
@@ -79,7 +83,7 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to='product/', verbose_name="Фото")
     #is_main - models.BooleanField(default=False, verbose_name="Главная картинка")
 
-    def _str_(self):
+    def __str__(self):
         return self.product.name
     
     class Meta:
@@ -90,7 +94,7 @@ class ProductImage(models.Model):
 class Attribute(models.Model):
     name = models.CharField(verbose_name="Название", max_length=100)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
     
     class Meta:
@@ -102,7 +106,7 @@ class AttributeValue(models.Model):
     attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='values', verbose_name='Название')
     value = models.CharField(max_length=100)
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.attribute.name} {self.value}"
     
     class Meta:
@@ -118,7 +122,7 @@ class ProductVariant( models.Model):
     stock = models.PositiveIntegerField(default=1, verbose_name="НАзвание товара на складе")
     sku = models.CharField(max_length=255, unique=True, verbose_name="Артикул")
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.product.name} {self.sku}"
     
     class Meta:
@@ -134,7 +138,7 @@ class Review(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.product.name} {self.rating}"
     
     class Meta:

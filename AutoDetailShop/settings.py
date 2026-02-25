@@ -19,8 +19,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-     'jazzmin',
-
+   
+    #"unfold",
+    'jet.dashboard',
+    'jet',
+    'mptt',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -115,6 +118,8 @@ TIME_ZONE = 'Asia/Bishkek'
 USE_I18N = True
 
 USE_TZ = True
+
+JET_DEFAULT_THEME = 'light-green'
 
 
 # Static files (CSS, JavaScript, Images)
