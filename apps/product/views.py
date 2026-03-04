@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, ListView
 from apps.product.models import Category, Product 
+from apps.abuot.models import Slider
 from apps.blog.models import Post
 from apps.partners.models import Partners
 
@@ -17,6 +18,7 @@ class HomeView(TemplateView):
             category__is_active=True 
         )[:8]
         context['partners'] = Partners.objects.all()
+        context['sliders'] = Slider.objects.filter(is_active=True).order_by('order', '-created_at')
         return context
     
 
