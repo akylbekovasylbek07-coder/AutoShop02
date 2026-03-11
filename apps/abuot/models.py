@@ -20,7 +20,7 @@ class PlusAbout(models.Model):
     img = models.ImageField(upload_to="about/", verbose_name="Изображение")
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
     class Meta:

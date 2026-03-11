@@ -4,7 +4,8 @@ from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView
 
 from apps.abuot.forms import SliderForm
-from apps.abuot.models import Slider
+from apps.abuot.models import (Slider,
+                               AboutContent, PlusAbout, BlogAbout, Fag, Testimonials)
 
 
 @staff_member_required
@@ -44,4 +45,9 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['aboutCon'] = AboutContent.objects.latest('-id')
+        context['plusAbo'] = PlusAbout.objects.all()[:3]
+        context['blogAbo'] = BlogAbout.objects.all()[:3]
+        context['fags'] = Fag.objects.all()[:6]
+        context['testimonials'] = Testimonials.objects.all()[:6]
         return context
