@@ -26,8 +26,8 @@ class ProductVariantInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     # Исправлены опечатки: stoct -> stock, created_ad -> created_at
-    list_display = ('name', 'category', 'brand', 'is_available', 'created_at') 
-    list_filter = ('is_available', 'category', 'brand')
+    list_display = ('name', 'category', 'is_available', 'created_at') 
+    list_filter = ('is_available', 'category',)
     prepopulated_fields = {'slug': ('name',)}
     inlines = [ProductImageInline, ProductVariantInline]    
 

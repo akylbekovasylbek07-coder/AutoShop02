@@ -44,7 +44,18 @@
             <!--about section end-->
 
             <!--chose us area start-->
-            <div class="choseus_area" data-bgimg="{% static 'assets/img/about/about1.jpg' %}">
+            <div class="choseus_area">
+            <div class="text">
+                <h1>что то о нас</h1>
+                <style>
+                    .text {
+                        font-size: 120px;
+                        color: #ff0000;
+                        text-align: center;
+                    }
+
+                </style>
+            </div>
                 <div class="row">
                 {% for plus in plusAbo %}
                         <div class="col-lg-4 col-md-4">
@@ -68,16 +79,16 @@
             <!--services img area-->
             <div class="about_gallery_section mb-55"> 
                 <div class="row">
-                    {% for blogAbo in blogAbo %}
+                    {% for blog in blogAbo %}
                         <div class="col-lg-4 col-md-4">
                             <article class="single_gallery_section">
                                 <figure>
                                     <div class="gallery_thumb">
-                                        <img src="{{blogAbo.small_img.url}}" alt="">
+                                        <img src="{{blog.img.url}}" alt="">
                                     </div>
                                     <figcaption class="about_gallery_content">
-                                       <h3>{{blogAbo.title}}</h3>
-                                        <p>{{blogAbo.desc}}</p>
+                                       <h3>{{blog.title}}</h3>
+                                        <p>{{blog.desc}}</p>
                                     </figcaption>
                                 </figure>
                             </article>
@@ -90,87 +101,61 @@
             <!--testimonial area start-->
             <div class="faq-client-say-area">
                 <div class="row">
-                   {% for testimonial in testimonial %}
                     <div class="col-lg-6 col-md-6">
                         <div class="faq-client_title">
-                            <h2>{{testimonial.title}}</h2>
+                            <h2>Вопросы и ответы</h2>
                         </div>
                         <div class="faq-style-wrap" id="faq-five">
-                            <!-- Panel-default -->
+                            {% for fag in fags %}
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a id="octagon" class="collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse1" aria-expanded="true" aria-controls="faq-collapse1"> <span class="button-faq"></span>{{testimonial.title}}</a>
+                                        <a id="octagon" class="{% if not forloop.first %}collapsed{% endif %}" role="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="faq-collapse{{ forloop.counter }}">
+                                            <span class="button-faq"></span>{{fag.title}}
+                                        </a>
                                     </h5>
                                 </div>
                             </div>
-                            <!--// Panel-default -->
-                            <div class="panel-collapse collapse" id="faq-collapse1" aria-expanded="true" aria-controls="faq-collapse1">
+                            <div class="panel-collapse collapse{% if forloop.first %} show{% endif %}" id="faq-collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="faq-collapse{{ forloop.counter }}">
                                 <div class="panel-body">
-                                    <p>{{testimonial.desc}}</p>
+                                    <p>{{fag.desc}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-
                     </div>
-                    {% for fags in Fag %}
                     <div class="col-lg-6 col-md-6">
                         <div class="testimonials-area">
                             <div class="faq-client_title">
-                                <h2>{{fags.title}}</h2>
+                                <h2>Отзывы клиентов</h2>
                             </div>
                             <div class="testimonial-two owl-carousel">
+                                {% for testimonial in testimonials %}
                                 <div class="testimonial-wrap-two text-center">
-                                        <div class="quote-container">
-                                            <div class="quote-image">
-                                                <img src="{% static 'assets/img/about/testimonial1.jpg' %}" alt="">
-                                            </div>
-                                            <div class="testimonials-text">
-                                                <p>Support and response has been amazing, helping me with several issues I came across and got them solved almost the same day. A pleasure to work with them!</p>
-                                            </div>
-                                            <div class="author">
-                                                <h6>Kathy Young</h6>
-                                                <p>CEO of SunPark</p>
-                                            </div>
-                                            
+                                    <div class="quote-container">
+                                        <div class="quote-image">
+                                            {% if testimonial.avatar %}
+                                            <img src="{{testimonial.avatar.url}}" alt="">
+                                            {% endif %}
+                                        </div>
+                                        <div class="testimonials-text">
+                                            <p>{{testimonial.desc}}</p>
+                                        </div>
+                                        <div class="author">
+                                            <h6>{{testimonial.name}}</h6>
+                                            <p>{{testimonial.position}}</p>
                                         </div>
                                     </div>
-                                <div class="testimonial-wrap-two text-center">
-                                        <div class="quote-container">
-                                            <div class="quote-image">
-                                                <img src="{% static 'assets/img/about/testimonial2.jpg' %}" alt="">
-                                            </div>
-                                            <div class="testimonials-text">
-                                                <p>Support and response has been amazing, helping me with several issues I came across and got them solved almost the same day. A pleasure to work with them!</p>
-                                            </div>
-                                            <div class="author">
-                                                <h6>Kathy Young</h6>
-                                                <p>CEO of SunPark</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <div class="testimonial-wrap-two text-center">
-                                        <div class="quote-container">
-                                            <div class="quote-image">
-                                                <img src="{% static 'assets/img/about/testimonial3.jpg' %}" alt="">
-                                            </div>
-                                            <div class="testimonials-text">
-                                                <p>Support and response has been amazing, helping me with several issues I came across and got them solved almost the same day. A pleasure to work with them!</p>
-                                            </div>
-                                            <div class="author">
-                                                <h6>Kathy Young</h6>
-                                                <p>CEO of SunPark</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                    
-                    {% endfor %}
                 </div>
             </div>
             <!--testimonial area end-->
         </div>
     </div>
     <!--about bg area end-->
+    
 {% endblock content %}

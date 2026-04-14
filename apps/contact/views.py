@@ -16,5 +16,5 @@ class ContactView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Ачкыч сөздү HTMLдегидей кылып 'contactPage' деп өзгөртүңүз
-        context['contactPage'] = ContactPage.objects.latest('id') 
+        context['contactPage'] = ContactPage.objects.order_by('-id').first()
         return context

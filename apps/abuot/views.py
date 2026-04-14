@@ -45,7 +45,7 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['aboutCon'] = AboutContent.objects.latest('-id')
+        context['aboutCon'] = AboutContent.objects.order_by('-id').first()
         context['plusAbo'] = PlusAbout.objects.all()[:3]
         context['blogAbo'] = BlogAbout.objects.all()[:3]
         context['fags'] = Fag.objects.all()[:6]

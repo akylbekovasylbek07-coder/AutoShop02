@@ -9,4 +9,5 @@ urlpatterns = [
     path("", views.AboutView.as_view(), name="about"),
     path("slider/", views.slider_manage, name="slider_manage"),
     path("slider/<int:pk>/delete/", views.slider_delete, name="slider_delete"),
+    
 ]

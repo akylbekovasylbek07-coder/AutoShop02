@@ -20,13 +20,11 @@ class PlusAbout(models.Model):
     img = models.ImageField(upload_to="about/", verbose_name="Изображение")
 
     def __str__(self):
-        return self.name
-
+        return self.title
 
     class Meta:
         verbose_name = "Плюсы"
         verbose_name_plural = "Плюсы"
-
 
 
 class BlogAbout(models.Model):
@@ -34,9 +32,9 @@ class BlogAbout(models.Model):
     desc = models.TextField(verbose_name="Описание")
     img = models.ImageField(upload_to="about/", verbose_name="Изображение")
 
-
     def __str__(self):
-        return self.title
+        # ОҢДОЛДУ: 'name' деген жок болчу, 'title' кылып өзгөрттүк
+        return self.title 
     
     class Meta:
         verbose_name = "Блог"
@@ -50,11 +48,9 @@ class Fag(models.Model):
     def __str__(self):
         return self.title
     
-
     class Meta:
         verbose_name = "Вопросы/Ответы"
         verbose_name_plural = "вопросы/ответы"
-
 
 
 class Testimonials(models.Model):
@@ -64,12 +60,12 @@ class Testimonials(models.Model):
     desc = models.TextField(verbose_name="Описание")
 
     def __str__(self):
-        return self.title
+        # ОҢДОЛДУ: 'title' деген жок болчу, 'name' кылып өзгөрттүк
+        return self.name 
     
     class Meta:
         verbose_name = "отзывы"
         verbose_name_plural = "отзывы "
-
 
 
 class Slider(models.Model):

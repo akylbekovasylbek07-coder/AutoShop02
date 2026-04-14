@@ -1,3 +1,4 @@
+{% load static %}
 <!--newsletter area start-->
 <div class="newsletter_area">
     <div class="container">
@@ -43,8 +44,8 @@
                         <p>Mazlay App is now available on Google Play & App Store. Get it now.</p>
                         <div class="app_img">
                             <ul>
-                                <li><a href="index.html#"><img src="assets/img/icon/icon-app.jpg" alt=""></a></li>
-                                <li><a href="index.html#"><img src="assets/img/icon/icon1-app.jpg" alt=""></a></li>
+                                <li><a href="index.html#"><img src="{% static 'assets/img/icon/icon-app.jpg' %}" alt=""></a></li>
+                                <li><a href="index.html#"><img src="{% static 'assets/img/icon/icon1-app.jpg' %}" alt=""></a></li>
                             </ul>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
             <div class="shipping_inner">
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="assets/img/about/shipping1.png" alt="">
+                        <img src="{% static 'assets/img/about/shipping1.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>Free Delivery</h4>
@@ -72,7 +73,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="assets/img/about/shipping2.png" alt="">
+                        <img src="{% static 'assets/img/about/shipping2.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>Free Delivery</h4>
@@ -81,7 +82,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="assets/img/about/shipping3.png" alt="">
+                        <img src="{% static 'assets/img/about/shipping3.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>Free Delivery</h4>
@@ -90,7 +91,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="assets/img/about/shipping4.png" alt="">
+                        <img src="{% static 'assets/img/about/shipping4.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>Free Delivery</h4>
@@ -99,7 +100,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="assets/img/about/shipping5.png" alt="">
+                        <img src="{% static 'assets/img/about/shipping5.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>Free Delivery</h4>
@@ -119,7 +120,7 @@
                         <div class="footer_contact">
                             <div class="footer_contact_inner">
                                 <div class="contact_icone">
-                                    <img src="assets/img/icon/icon-phone.png" alt="">
+                                    <img src="{% static 'assets/img/icon/icon-phone.png' %}" alt="">
                                 </div>
                                 <div class="contact_text">
                                     <p>Hotline Free 24/24: <br> <strong><a href="tel:0123456789">0123456789</a> </strong></p>
@@ -212,7 +213,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="footer_payment text-right">
-                        <img src="assets/img/icon/payment.png" alt="">
+                        <img src="{% static 'assets/img/icon/payment.png' %}" alt="">
                     </div>
                 </div>
             </div>
@@ -236,38 +237,38 @@
                                 <div class="tab-content product-details-large">
                                     <div class="tab-pane fade show active" id="tab1" role="tabpanel" >
                                         <div class="modal_tab_img">
-                                            <a href="index.html#"><img src="assets/img/product/productbig1.jpg" alt=""></a>    
+                                            <a href="index.html#"><img src="{% static 'assets/img/product/productbig1.jpg' %}" alt=""></a>    
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab2" role="tabpanel">
                                         <div class="modal_tab_img">
-                                            <a href="index.html#"><img src="assets/img/product/productbig2.jpg" alt=""></a>    
+                                            <a href="index.html#"><img src="{% static 'assets/img/product/productbig2.jpg' %}" alt=""></a>    
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab3" role="tabpanel">
                                         <div class="modal_tab_img">
-                                            <a href="index.html#"><img src="assets/img/product/productbig3.jpg" alt=""></a>    
+                                            <a href="index.html#"><img src="{% static 'assets/img/product/productbig3.jpg' %}" alt=""></a>    
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab4" role="tabpanel">
                                         <div class="modal_tab_img">
-                                            <a href="index.html#"><img src="assets/img/product/productbig4.jpg" alt=""></a>    
+                                            <a href="index.html#"><img src="{% static 'assets/img/product/productbig4.jpg' %}" alt=""></a>    
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal_tab_button">    
                                     <ul class="nav product_navactive owl-carousel" role="tablist">
                                         <li >
-                                            <a class="nav-link active" data-bs-toggle="tab" href="index.html#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="assets/img/product/product2.jpg" alt=""></a>
+                                            <a class="nav-link active" data-bs-toggle="tab" href="index.html#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="{% static 'assets/img/product/product2.jpg' %}" alt=""></a>
                                         </li>
                                         <li>
-                                                <a class="nav-link" data-bs-toggle="tab" href="index.html#tab2" role="tab" aria-controls="tab2" aria-selected="false"><img src="assets/img/product/product6.jpg" alt=""></a>
+                                                <a class="nav-link" data-bs-toggle="tab" href="index.html#tab2" role="tab" aria-controls="tab2" aria-selected="false"><img src="{% static 'assets/img/product/product6.jpg' %}" alt=""></a>
                                         </li>
                                         <li>
-                                            <a class="nav-link button_three" data-bs-toggle="tab" href="index.html#tab3" role="tab" aria-controls="tab3" aria-selected="false"><img src="assets/img/product/product9.jpg" alt=""></a>
+                                            <a class="nav-link button_three" data-bs-toggle="tab" href="index.html#tab3" role="tab" aria-controls="tab3" aria-selected="false"><img src="{% static 'assets/img/product/product9.jpg' %}" alt=""></a>
                                         </li>
                                         <li>
-                                            <a class="nav-link" data-bs-toggle="tab" href="index.html#tab4" role="tab" aria-controls="tab4" aria-selected="false"><img src="assets/img/product/product3.jpg" alt=""></a>
+                                            <a class="nav-link" data-bs-toggle="tab" href="index.html#tab4" role="tab" aria-controls="tab4" aria-selected="false"><img src="{% static 'assets/img/product/product3.jpg' %}" alt=""></a>
                                         </li>
 
                                     </ul>
