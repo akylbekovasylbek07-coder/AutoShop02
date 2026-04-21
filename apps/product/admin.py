@@ -54,3 +54,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('product', 'user', 'rating', 'created_at')
     list_filter = ('rating',)
     search_fields = ('product__name', 'user__username')
+
+@admin.register(CarModel)
+class CarModelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'brand')

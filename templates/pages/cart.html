@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">Корзина</h2>
+        {% for item in cart.items.all %}
+        <div class="col-lg-6">
+            <h3>{{ item.variant.name }}</h3>
+            {% if item.variant.get_main_image %}
+            <img width="150px" src="{{ item.variant.get_main_image.image.url }}">
+            {% endif %}
+            <p>{{ item.quantitly }} шт. x {{ item.price }} сом</p>
+            <p>{{ item.total_price }}</p>
+            <form action="{% url 'remove_from_cart' item.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">Удалить</button>
+            </form>
+        </div>
+        {% empty %}
+        <p>Корзина пуста.</p>
+        {% endfor %}
+    </div>
+    <hr class="mt-5">
+    <h2 style="background-color: blueviolet; color: white;">Итого: {{ cart.total_price }}</h2>
+</div>
+{% endblock content %}

@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.product.context_processors.shop_layout_context',
             ],
         },
     },
@@ -234,3 +235,6 @@ CKEDITOR_5_CONFIGS = {
 # Define a constant in settings.py to specify file upload permissions
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"  # Possible values: "staff", "authenticated", "any"
 CK_EDITOR_5_UPLOAD_FILE_VIEW_NAME = "custom_upload_file"
+
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/'

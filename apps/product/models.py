@@ -158,7 +158,7 @@ class AttributeValue(models.Model):
     value = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.value
     
     class Meta:
         verbose_name_plural = 'Значение атрибута'
@@ -208,3 +208,29 @@ class Slider(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+    
+    class Meta:
+        verbose_name_plural = 'Слайдер'
+        verbose_name = 'слайдер'
+
+class Wislist(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,null=True, 
+        blank=True, related_name='wislist'
+        )
+    session_key = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f"Избранное {self.id}"
+    
+    def total_items(self):
+        return self.items.count()
+
+
+class WislistItem(models.Model):
+    wislist = models.ForeignKey(Wislist, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    
+    class Meta:
+        unique_together = ('wislist', 'product')
+

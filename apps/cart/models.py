@@ -18,7 +18,7 @@ class Cart(models.Model):
         return sum(item.total_price() for item in self.items.all())
     
     def total_quantity(self):
-        return sum(item.quantitly() for item in self.items.all())
+        return sum(item.quantitly for item in self.items.all())
 
     def __str__(self):
         return f"корзина: {self.id}"
@@ -36,7 +36,7 @@ class CartItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.product.name} {self.quantitly}"
+        return f"{self.variant.name} {self.quantitly}"
 
   
     def total_price(self):

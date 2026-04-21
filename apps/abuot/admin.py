@@ -3,10 +3,12 @@ from apps.abuot.models import *
 from apps.abuot.models import Slider
 
 
+
 admin.site.register(AboutContent)
 admin.site.register(PlusAbout)
 admin.site.register(BlogAbout)
 admin.site.register(Fag)
+
 admin.site.register(Testimonials)
 
 

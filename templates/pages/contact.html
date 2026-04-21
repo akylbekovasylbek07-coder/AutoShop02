@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block content %}
     <!--breadcrumbs area start-->
@@ -34,7 +34,7 @@
                        <div class="contact_message content">
                             <h3>{{contactPage.title}}</h3>    
                             <p>{{contactPage.desc}}</p>
-                                <ul><li><i class="fa fa-fax"></i>Address: {{contactPage.address}}</li>
+                                <ul><li><i class="fa fa-fax"></i>Адрес: {{contactPage.address}}</li>
                                     <li><i class="fa fa-envelope-o"></i> <a href="mailto:{{contactPage.email}}">{{contactPage.email}}</a></li>
                                     <li><i class="fa fa-phone"></i> <a href="tel:{{contactPage.phone}}">{{contactPage.phone}}</a></li>
                                 </ul>          
@@ -64,3 +64,5 @@
         </div>
     </div>
 {% endblock content %}
+
+
